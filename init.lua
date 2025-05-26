@@ -1,5 +1,6 @@
 require("config.lazy")
 
+
 -- basic config
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -26,9 +27,11 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "200"
 
+vim.diagnostic.open_float()
 
-
-
+vim.schedule(function()
+  vim.opt.clipboard = 'unnamedplus'
+end)
 
 
 

@@ -55,7 +55,7 @@ local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {'clangd', 'lua-language-server'},
+  ensure_installed = {'clangd'},
   handlers = {
     function(server_name)
       require('lspconfig')[server_name].setup({
@@ -64,24 +64,18 @@ require('mason-lspconfig').setup({
     end,
     lua_ls = function()
       require('lspconfig').lua_ls.setup({
-        capabilities = lsp_capabilities,
-        settings = {
-          Lua = {
-            runtime = {
-              version = 'LuaJIT'
-            },
-	diagnostics = {
-              globals = {'vim'},
-            },
-            workspace = {
-              library = {
-                vim.env.VIMRUNTIME,
-              }
-            }
-          }
-        }
-      })
+       settings = {
+        Lua = {
+      runtime = {
+        version = "LuaJIT"
+      },
+        ["diagnostics.enable"] = false
+    }
+  }})
     end,
+   basedpyright = function ()
+
+   end
   }
 })
 
@@ -113,7 +107,7 @@ vim.diagnostic.config({
     -- This will add diagnostics on the right side
     prefix = '●',  -- Customize symbol
     source = "always",  -- Show source (e.g., "pyright")
-    severity = { min = vim.diagnostic.severity.WARN},  -- Only show errors or higher severity
+    severity = { min = vim.diagnostic.severity.HINT},  -- Only show errors or higher severity
   },
   float = {
     border = 'rounded',  -- Optional: You can set this to any border style
