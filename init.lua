@@ -1,5 +1,5 @@
 require("config.lazy")
-
+require("config.remap")
 
 -- basic config
 vim.opt.nu = true
